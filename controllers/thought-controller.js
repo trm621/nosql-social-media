@@ -2,11 +2,10 @@ const { Thought, User } = require('../models');
 
 const thoughtController = {
     addThought({ params, body }, res) {
-        console.log(body);
         Thought.create(body)
             .then(({ _id }) => {
                 return User.findOneAndUpdate(
-                    { _id: params.UserId },
+                    { _id: params.userId },
                     { $push: { thoughts: _id } },
                     { new: true }
                 );
@@ -45,7 +44,7 @@ const thoughtController = {
             }
             return Thought.findOneAndUpdate(
                 { _id: params.userId },
-                { $pull: { thought: params.thoughtId } },
+                { $pull: { thoughts: params.thoughtId } },
                 { new: true}
             );
         })
