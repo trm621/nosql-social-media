@@ -17,11 +17,12 @@ router
     .post(addThought)
 
 router
-    .route(':thoughtId')
+    .route('/:thoughtId')
     .get(getThoughtById)
     .put(updateThought)
     .post(addReaction)
-    .delete(removeThought);
+    .delete(removeThought)
+    .delete(removeReaction);
 
 router
     .route('/:thoughtId/:reactionId')
