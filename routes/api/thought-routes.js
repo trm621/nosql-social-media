@@ -17,12 +17,12 @@ router
     .post(addThought)
 
 router
-    .route('/:thoughtId')
+    .route('/:userId/:thoughtId')
     .get(getThoughtById)
     .put(updateThought)
 
 router
-    .route('/:userId/:thoughtId')
+    .route('/:thoughtId')
     .delete(removeThought)
 
 router
