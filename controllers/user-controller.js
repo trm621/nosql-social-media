@@ -105,19 +105,13 @@ const userController = {
           .catch((err) => res.json(err))
     },
     deleteFriend({ params }, res) {
-      User.findOneAndDelete(
+      User.findOneAndUpdate(
         { _id: params.userId },
         { $pull: { friends: params.friendId } },
-        { new: true, runValidators: true }
+        { new: true }
       )
-        .then((dbUserData) => {
-          if (!dbUserData) {
-            res.status(404).json*{ message: "No user found with this id!" }
-            return;
-          }
-          res.json(dbUserData);
-        })
-        .catch((err) => res.json(err))
+        .then(dbUserData => res.json(dbUserData))
+        .catch(err => res.json(err));
     }
 };
 

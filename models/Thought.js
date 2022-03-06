@@ -1,28 +1,29 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
 const dateFormat = require('../utils/dateFormat');
 
-const ReactionSchema = new Schema({
-    reactionBody: {
-        type: String,
-        required: [true, "Please enter a reaction between 1 and 280 characters"],
-        minLength: 1,
-        maxlength: 280
+const ReactionSchema = new Schema(
+    {
+        reactionBody: {
+            type: String,
+            required: true,
+            minLength: 1,
+            maxLength: 280
+        },
+        username: {
+            type: String,
+            required: true
+        },
+        createdAt: {
+            type: Date,
+            default: Date.now,
+            get: createdAtVal => dateFormat(createdAtVal)
+        }
     },
-    username: {
-        type: String,
-        required: [true, "Please provide a username."]
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        get: (createdAtVal) => dateFormat(createdAtVal)
+    {
+        toJSON: {
+            getters: true
+        }
     }
-},
-{
-    toJSON: {
-        getters: true
-    }
-  }
 );
 
 const ThoughtSchema = new Schema({
@@ -39,7 +40,7 @@ const ThoughtSchema = new Schema({
     },
     username: {
         type: String,
-        required: [true, "Please provide a valid username."],
+        required: true,
     },
     reactions: [ReactionSchema]
 },
@@ -47,8 +48,7 @@ const ThoughtSchema = new Schema({
     toJSON: {
         virtuals: true,
         getters: true
-    },
-    id: false
+    }
 }
 );
 
