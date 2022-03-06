@@ -10,7 +10,7 @@
   - <a href="#tests">Tests</a>
   - <a href="#questions">Questions</a>
   ## Installation
-  ### Download the repo and run throught the command line by typing in "npm start" in the root directory of the project.
+  ### Download the repo, download the necessary dependencies by typing "npm i" in the command line, then run the app through the command line by typing in "npm start" in the root directory of the project.
   ## Usage
   ### Add information through Insomnia. Watch the video below for a demonstration!
   ## Contributing
